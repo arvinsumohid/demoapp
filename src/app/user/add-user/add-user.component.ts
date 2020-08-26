@@ -22,7 +22,7 @@ export class AddUserComponent implements OnInit {
   ngOnInit(): void {
     this.userForm = this.fb.group({
       usr_email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
-      usr_fullname: ['', [Validators.required]],
+      usr_fullname: ['', [Validators.required, Validators.pattern("^.* .*$")]],
       usr_address: ['', [Validators.required]],
     })
   }
