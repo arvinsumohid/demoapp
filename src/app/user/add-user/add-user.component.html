@@ -39,4 +39,8 @@
         </div>
         <button class="button button--blue" type="submit">Submit</button>
     </form>
+
+    <div *ngIf="errorMsg" class="error-msg">
+        {{errorMsg}}
+    </div>
 </div>

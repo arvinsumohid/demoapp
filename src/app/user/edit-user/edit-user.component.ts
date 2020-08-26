@@ -39,23 +39,7 @@ export class EditUserComponent implements OnInit {
 
 }
 
-  ngOnInit(): void {
-    // this.userForm = this.fb.group({
-    //   _id: ['', Validators.required],
-    //   usr_email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
-    //   usr_fullname: ['', Validators.required],
-    //   usr_address: ['', Validators.required],
-    // });
-
-    // this.userService.getUserById(this.route.params['value'].id).subscribe(data => {
-    //   if(data) {
-    //     delete data['__v']
-    //     delete data['updated_at']
-    //     this.userForm.setValue(data)
-    //     this.is_idExist = true;
-    //   }
-    // }, error => this.errorMsg = error )
-  }
+  ngOnInit(): void { }
 
   submitForm(): void {
     if (this.userForm.invalid) {
