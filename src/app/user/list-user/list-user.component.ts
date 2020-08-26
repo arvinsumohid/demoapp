@@ -9,18 +9,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./list-user.component.scss']
 })
 export class ListUserComponent implements OnInit {
-
+  message : String
+  isShow : Boolean
   users: User[];
   errorMsg?: String;
 
   constructor( 
     public userService: UserService,
     private router : Router,
-  ) { }
+  ) {
+    this.isShow = this.router.getCurrentNavigation().extras.state?.success ? true : false
+    this.message = this.router.getCurrentNavigation().extras.state?.success || null;
+  }
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe(data => this.users = data,
-                                          error => this.errorMsg = error)
+      error => {
+        this.errorMsg = error
+        console.log(error)
+        this.message = 'There is an Error found while proccessing.'
+        this.isShow = true
+      })
   }
 
   onEdit(id : string): void {
@@ -31,11 +40,24 @@ export class ListUserComponent implements OnInit {
 
   onDelete(id : string): void {
     this.userService.delete(id).subscribe(success => {
-      this.userService.getUsers().subscribe(data => this.users = data,
-                                    error => this.errorMsg = error)
-    }, error => this.errorMsg = error)
+      this.userService.getUsers().subscribe(data => {
+        this.message = 'Successfully Deleted.'
+        this.isShow = true
+        this.users = data
+      },
+                                    error => {
+                                      this.errorMsg = error
+                                      console.log(error)
+                                      this.message = 'There is an Error found while proccessing.'
+                                      this.isShow = true
+                                    })
+    }, error => {
+      this.errorMsg = error
+      console.log(error)
+      this.message = 'There is an Error found while proccessing.'
+      this.isShow = true
+    })
   }
-
    
 
   onAdd(): void {

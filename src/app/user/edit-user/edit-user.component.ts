@@ -13,6 +13,8 @@ export class EditUserComponent implements OnInit {
   errorMsg?: String;
   displayError : boolean = false;
   is_idExist : boolean = false;
+  message : String
+  isShow : Boolean
 
   constructor(
     public fb: FormBuilder,
@@ -35,7 +37,12 @@ export class EditUserComponent implements OnInit {
       this.userForm.setValue(data)
       this.is_idExist = true;
     }
-  }, error => this.errorMsg = error )
+  }, error => {
+    this.errorMsg = error
+    console.log(error)
+    this.message = 'There is an Error found while proccessing.'
+    this.isShow = true
+  } )
 
 }
 
@@ -47,10 +54,18 @@ export class EditUserComponent implements OnInit {
       return;
    }
     this.userService.updateUser(this.userForm.value._id, this.userForm.value).subscribe(res => {
-      alert('Successfully Updated!')
       this.displayError = false;
-      this.router.navigate(['/'])
-    }, error => this.errorMsg = error )
+      this.router.navigate(['/'], {
+        state: {
+          success : 'Successfully Updated.'
+        }
+      })
+    }, error => {
+      this.errorMsg = error
+      console.log(error)
+      this.message = 'There is an Error found while proccessing.'
+      this.isShow = true
+    } )
   }
 
   get isIdExist() {

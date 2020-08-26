@@ -12,6 +12,8 @@ export class AddUserComponent implements OnInit {
   userForm: FormGroup;
   errorMsg?: String;
   displayError : boolean = false;
+  message : String
+  isShow : Boolean
 
   constructor(
     public fb: FormBuilder,
@@ -34,10 +36,18 @@ export class AddUserComponent implements OnInit {
    }
   
     this.userService.addUser(this.userForm.value).subscribe(res => {
-      alert('User Created Successfully!')
       this.displayError = false;
-      this.router.navigateByUrl('/')
-    }, error => this.errorMsg = error)
+      this.router.navigate(['/'], {
+        state: {
+          success : 'Successfully Created.'
+        }
+      })
+    }, error => {
+      this.errorMsg = error
+      console.log(error)
+      this.message = 'There is an Error found while proccessing.'
+      this.isShow = true
+    })
   }
 
   get userEmail() {

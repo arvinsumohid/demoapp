@@ -20,8 +20,6 @@ export class UserService {
   }
 
   addUser(user) : Observable<User> {
-    console.log('User:')
-    console.log(user)
     return this.http.post<User>(`${this.baseUrl}/users`, JSON.stringify(user) , this.httpOptions).pipe(
       catchError(this.errorHandler)
     )

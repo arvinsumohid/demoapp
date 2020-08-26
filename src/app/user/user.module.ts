@@ -6,13 +6,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { RouterModule } from '@angular/router';
+import { AlertComponent } from '../alert/alert.component';
 
 
 @NgModule({
   declarations: [
     AddUserComponent,
     ListUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    AlertComponent
   ],
   imports: [
     CommonModule,

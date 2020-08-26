@@ -30,7 +30,9 @@
     </tr>
 </table>
 
-<div *ngIf="errorMsg" class="error-msg">
-    No Data Found.<br>
-    {{errorMsg}}
-</div>
+<!-- <div *ngIf="errorMsg" class="error-msg"> -->
+    <!-- No Data Found.<br> -->
+    <!-- {{errorMsg}} -->
+<!-- </div> -->
+
+<app-alert [message]="message" [isShow]="isShow"></app-alert>
