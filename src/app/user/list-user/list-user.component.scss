@@ -1,0 +1,25 @@
+.list {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-collapse: collapse;
+
+    &__row {
+        width: 100%;
+        border-bottom: 1px solid #ddd;
+
+        &--head {
+            background-color: #435d7d;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+    }
+
+    &__col {
+        padding: 10px 30px;
+        text-align: center;
+
+        .list__row--head & {
+            color: #fff;
+        }
+    }
+}

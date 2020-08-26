@@ -1,0 +1,36 @@
+<table class="list">
+    <tr class="list__row list__row--head">
+        <th class="list__col">
+            Email
+        </th>
+        <th class="list__col">
+            Full Name
+        </th>
+        <th class="list__col">
+            Address
+        </th>
+        <th class="list__col">
+            <button class="button button--green" (click)="onAdd()">Add</button>
+        </th>
+    </tr>
+    <tr class="list__row list__row--item" *ngFor="let user of users">
+        <td class="list__col">
+            {{user.usr_email}}
+        </td>
+        <td class="list__col">
+            {{user.usr_fullname}}
+        </td>
+        <td class="list__col">
+            {{user.usr_address}}
+        </td>
+        <td class="list__col">
+            <button class="button button--yellow" (click)="onEdit(user._id)">Edit</button>
+            <button class="button button--red" (click)="onDelete(user._id)">Delete</button>
+        </td>
+    </tr>
+</table>
+
+<div *ngIf="errorMsg">
+    No Data Found.
+    {{errorMsg}}
+</div>
